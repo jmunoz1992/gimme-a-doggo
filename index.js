@@ -1,15 +1,21 @@
+document.getElementById("doggo-btn").addEventListener("click", async () => {
+  const currentImg = document.getElementById("doggo-img");
+  const contentDiv = document.getElementById("button-and-img");
 
-(async () => {
+  if (currentImg) {
+    contentDiv.removeChild(currentImg);
+  }
+
   let imgSrc = "";
   const res = await fetch('https://dog.ceo/api/breeds/image/random');
   const answer = await res.json();
   imgSrc = answer.message;
-  console.log("imgSrc: ", imgSrc);
 
   if (imgSrc !== "") {
     const img = document.createElement('img');
+    img.id = "doggo-img";
     img.src = imgSrc;
-    img.width = 500;
-    document.body.appendChild(img);
+    img.width = 250;
+    contentDiv.appendChild(img);
   }
-})()
+});
